@@ -18,3 +18,4 @@ paxos-run:
 clean:
 	@echo "Cleaning Paxos Cluster"
 	docker ps -a | awk '$$2 ~ /paxos/ {print $$1}' | xargs -I {} docker rm -f {}
+	docker network rm paxos_network
