@@ -2,9 +2,9 @@ package proposer
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"net/http"
-	"strings"
 )
 
 // Prepare ...
@@ -110,7 +110,7 @@ func SendPrepareRequest(peer string, uuid string) (int, error) {
 		return 0, errors.New("empty uuid provided")
 	}
 
-	url := "http://" + strings.TrimSpace(peer) + "." + strings.TrimSpace(GetNetwork()) + "/prepare/" + strings.TrimSpace(uuid)
+	url := fmt.Sprintf("http://%s.%s/prepare/%s", peer, GetNetwork(), uuid)
 
 	return SendRequest(url)
 }
@@ -129,7 +129,7 @@ func SendAcceptRequest(peer string, value string, uuid string) (int, error) {
 		return 0, errors.New("empty uuid provided")
 	}
 
-	url := "http://" + strings.TrimSpace(peer) + "." + strings.TrimSpace(GetNetwork()) + "/accept/" + strings.TrimSpace(uuid) + "/" + strings.TrimSpace(value)
+	url := fmt.Sprintf("http://%s.%s/accept/%s/%s", peer, GetNetwork(), uuid, value)
 
 	return SendRequest(url)
 }
@@ -144,7 +144,7 @@ func SendLearnRequest(peer string, value string) (int, error) {
 		return 0, errors.New("empty value provided")
 	}
 
-	url := "http://" + strings.TrimSpace(peer) + "." + strings.TrimSpace(GetNetwork()) + "/learn/" + strings.TrimSpace(value)
+	url := fmt.Sprintf("http://%s.%s/learn/%s", peer, GetNetwork(), value)
 
 	return SendRequest(url)
 }
