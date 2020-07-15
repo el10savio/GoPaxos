@@ -8,7 +8,15 @@ import (
 )
 
 // Prepare ...
-func Prepare(value string) error {
+func Prepare(key string, value string) error {
+	if key == "" {
+		return errors.New("empty key provided")
+	}
+
+	if value == "" {
+		return errors.New("empty value provided")
+	}
+
 	uuid := GenerateUUID()
 	peers := GetPeerList()
 
@@ -33,7 +41,7 @@ func Prepare(value string) error {
 
 		// Break when majorityPeersCount reached
 		if acceptedPeersCount >= majorityPeersCount {
-			Accept(value, uuid)
+			Accept(key, value, uuid)
 			break
 		}
 	}
@@ -46,7 +54,19 @@ func Prepare(value string) error {
 }
 
 // Accept ...
-func Accept(value string, uuid string) error {
+func Accept(key string, value string, uuid string) error {
+	if key == "" {
+		return errors.New("empty key provided")
+	}
+
+	if value == "" {
+		return errors.New("empty value provided")
+	}
+
+	if uuid == "" {
+		return errors.New("empty uuid provided")
+	}
+
 	peers := GetPeerList()
 
 	if len(peers) == 0 {
@@ -70,7 +90,7 @@ func Accept(value string, uuid string) error {
 
 		// Break when majorityPeersCount reached
 		if acceptedPeersCount >= majorityPeersCount {
-			Learn(value)
+			Learn(key, value)
 			break
 		}
 	}
@@ -83,7 +103,15 @@ func Accept(value string, uuid string) error {
 }
 
 // Learn ...
-func Learn(value string) error {
+func Learn(key string, value string) error {
+	if key == "" {
+		return errors.New("empty key provided")
+	}
+
+	if value == "" {
+		return errors.New("empty value provided")
+	}
+
 	peers := GetPeerList()
 
 	if len(peers) == 0 {
@@ -91,7 +119,7 @@ func Learn(value string) error {
 	}
 
 	for _, peer := range peers {
-		_, err := SendLearnRequest(peer, value)
+		_, err := SendLearnRequest(peer, key, value)
 		if err != nil {
 			log.Fatalln("error in sending learn request to peer", peer, ":", err)
 		}
@@ -131,16 +159,20 @@ func SendAcceptRequest(peer string, uuid string) (int, error) {
 }
 
 // SendLearnRequest ...
-func SendLearnRequest(peer string, value string) (int, error) {
+func SendLearnRequest(peer string, key string, value string) (int, error) {
 	if peer == "" {
 		return 0, errors.New("empty peer provided")
+	}
+
+	if key == "" {
+		return 0, errors.New("empty key provided")
 	}
 
 	if value == "" {
 		return 0, errors.New("empty value provided")
 	}
 
-	url := fmt.Sprintf("http://%s.%s/learn/%s", peer, GetNetwork(), value)
+	url := fmt.Sprintf("http://%s.%s/learn/%s/%s", peer, GetNetwork(), key, value)
 
 	return SendRequest(url)
 }

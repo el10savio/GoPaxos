@@ -33,14 +33,11 @@ type Route struct {
 // of individual Routes
 var Routes = []Route{
 	Route{"/", "GET", Index},
-
 	Route{"/store/get/{key}", "GET", GetValue},
-
-	Route{"/store/set/{key}/{value}", "GET", proposer.SetValue},
-
+	Route{"/store/set/{key}/{value}", "GET", proposer.PaxosSetValue},
 	Route{"/prepare/{id}", "GET", acceptor.PrepareReceiveHandler},
 	Route{"/accept/{id}", "GET", acceptor.AcceptReceiveHandler},
-	// Route{"/learn/{value}", "GET", acceptor.LearnReceiveHandler},
+	Route{"/learn/{key}/{value}", "GET", SetValue},
 }
 
 // Index is the handler for the path "/"

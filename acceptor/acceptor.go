@@ -1,6 +1,9 @@
 package acceptor
 
-import "errors"
+import (
+	"errors"
+	"strconv"
+)
 
 // HighestUUID ...
 var HighestUUID string
@@ -11,7 +14,10 @@ func PrepareReceive(uuid string) (bool, error) {
 		return false, errors.New("no uuid provided")
 	}
 
-	if uuid < HighestUUID {
+	_uuid, _ := strconv.ParseInt(uuid, 10, 64)
+	_HighestUUID, _ := strconv.ParseInt(HighestUUID, 10, 64)
+
+	if _uuid < _HighestUUID {
 		return false, nil
 	}
 
@@ -24,5 +30,9 @@ func AcceptReceive(uuid string) (bool, error) {
 	if uuid == "" {
 		return false, errors.New("no uuid provided")
 	}
-	return uuid < HighestUUID, nil
+
+	_uuid, _ := strconv.ParseInt(uuid, 10, 64)
+	_HighestUUID, _ := strconv.ParseInt(HighestUUID, 10, 64)
+
+	return _uuid > _HighestUUID, nil
 }

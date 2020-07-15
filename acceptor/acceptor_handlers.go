@@ -54,24 +54,3 @@ func AcceptReceiveHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 }
-
-// LearnReceiveHandler ...
-func LearnReceiveHandler(w http.ResponseWriter, r *http.Request) {
-	// Obtain the value from URL params
-	value := mux.Vars(r)["value"]
-
-	// LearnReceive(value)
-
-	// err := LearnReceive(value)
-	// if err != nil {
-	// 	log.WithFields(log.Fields{"error": err}).Error("failed to learn")
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	return
-	// }
-
-	log.WithFields(log.Fields{
-		"value": value,
-	}).Debug("successfull learn")
-
-	w.WriteHeader(http.StatusOK)
-}
