@@ -7,9 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 
-	"../acceptor"
 	"../kvstore"
-	"../proposer"
 )
 
 var (
@@ -34,9 +32,9 @@ type Route struct {
 var Routes = []Route{
 	Route{"/", "GET", Index},
 	Route{"/store/get/{key}", "GET", GetValue},
-	Route{"/store/set/{key}/{value}", "GET", proposer.PaxosSetValue},
-	Route{"/prepare/{id}", "GET", acceptor.PrepareReceiveHandler},
-	Route{"/accept/{id}", "GET", acceptor.AcceptReceiveHandler},
+	Route{"/store/set/{key}/{value}", "GET", PaxosSetValue},
+	Route{"/prepare/{id}", "GET", PrepareReceiveHandler},
+	Route{"/accept/{id}", "GET", AcceptReceiveHandler},
 	Route{"/learn/{key}/{value}", "GET", Learn},
 }
 
