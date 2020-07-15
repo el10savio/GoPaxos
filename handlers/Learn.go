@@ -13,8 +13,8 @@ import (
 // 	Value string `json:"value"`
 // }
 
-// SetValue ...
-func SetValue(w http.ResponseWriter, r *http.Request) {
+// Learn ...
+func Learn(w http.ResponseWriter, r *http.Request) {
 	// json decode the KV pair
 	// var kv KVPair
 	// _ = json.NewDecoder(r.Body).Decode(&kv)

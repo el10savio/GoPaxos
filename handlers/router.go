@@ -37,7 +37,7 @@ var Routes = []Route{
 	Route{"/store/set/{key}/{value}", "GET", proposer.PaxosSetValue},
 	Route{"/prepare/{id}", "GET", acceptor.PrepareReceiveHandler},
 	Route{"/accept/{id}", "GET", acceptor.AcceptReceiveHandler},
-	Route{"/learn/{key}/{value}", "GET", SetValue},
+	Route{"/learn/{key}/{value}", "GET", Learn},
 }
 
 // Index is the handler for the path "/"
