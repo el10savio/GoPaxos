@@ -16,8 +16,6 @@ FROM scratch
 
 COPY --from=builder /go/bin/paxos /go/bin/paxos
 
-ENV PEERS=""
-
 ENTRYPOINT ["/go/bin/paxos"]
 
 EXPOSE 8080
