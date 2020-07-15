@@ -6,7 +6,7 @@ import (
 )
 
 // HighestUUID ...
-var HighestUUID string
+var HighestUUID int64
 
 // PrepareReceive ...
 func PrepareReceive(uuid string) (bool, error) {
@@ -15,13 +15,12 @@ func PrepareReceive(uuid string) (bool, error) {
 	}
 
 	_uuid, _ := strconv.ParseInt(uuid, 10, 64)
-	_HighestUUID, _ := strconv.ParseInt(HighestUUID, 10, 64)
 
-	if _uuid < _HighestUUID {
+	if _uuid < HighestUUID {
 		return false, nil
 	}
 
-	HighestUUID = uuid
+	HighestUUID = _uuid
 	return true, nil
 }
 
@@ -32,7 +31,6 @@ func AcceptReceive(uuid string) (bool, error) {
 	}
 
 	_uuid, _ := strconv.ParseInt(uuid, 10, 64)
-	_HighestUUID, _ := strconv.ParseInt(HighestUUID, 10, 64)
 
-	return _uuid > _HighestUUID, nil
+	return _uuid > HighestUUID, nil
 }
