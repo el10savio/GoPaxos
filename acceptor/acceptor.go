@@ -14,7 +14,14 @@ func PrepareReceive(uuid string) (bool, error) {
 		return false, errors.New("no uuid provided")
 	}
 
-	_uuid, _ := strconv.ParseInt(uuid, 10, 64)
+	_uuid, err := strconv.ParseInt(uuid, 10, 64)
+	if err != nil {
+		return false, errors.New("invalid uuid provided")
+	}
+
+	if _uuid < 0 {
+		return false, errors.New("negative uuid provided")
+	}
 
 	if _uuid < HighestUUID {
 		return false, nil
@@ -30,7 +37,14 @@ func AcceptReceive(uuid string) (bool, error) {
 		return false, errors.New("no uuid provided")
 	}
 
-	_uuid, _ := strconv.ParseInt(uuid, 10, 64)
+	_uuid, err := strconv.ParseInt(uuid, 10, 64)
+	if err != nil {
+		return false, errors.New("invalid uuid provided")
+	}
+
+	if _uuid < 0 {
+		return false, errors.New("negative uuid provided")
+	}
 
 	return _uuid > HighestUUID, nil
 }
