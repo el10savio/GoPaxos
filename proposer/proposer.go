@@ -58,7 +58,7 @@ func Accept(value string, uuid string) error {
 	majorityPeersCount := len(peers)/2 + 1
 
 	for _, peer := range peers {
-		response, err := SendAcceptRequest(peer, value, uuid)
+		response, err := SendAcceptRequest(peer, uuid)
 		if err != nil {
 			log.Fatalln("error in sending accept request to peer", peer, ":", err)
 		}
@@ -70,7 +70,7 @@ func Accept(value string, uuid string) error {
 
 		// Break when majorityPeersCount reached
 		if acceptedPeersCount >= majorityPeersCount {
-			Learn(value, uuid)
+			Learn(value)
 			break
 		}
 	}
@@ -83,7 +83,7 @@ func Accept(value string, uuid string) error {
 }
 
 // Learn ...
-func Learn(value string, uuid string) error {
+func Learn(value string) error {
 	peers := GetPeerList()
 
 	if len(peers) == 0 {
@@ -116,20 +116,16 @@ func SendPrepareRequest(peer string, uuid string) (int, error) {
 }
 
 // SendAcceptRequest ...
-func SendAcceptRequest(peer string, value string, uuid string) (int, error) {
+func SendAcceptRequest(peer string, uuid string) (int, error) {
 	if peer == "" {
 		return 0, errors.New("empty peer provided")
-	}
-
-	if value == "" {
-		return 0, errors.New("empty value provided")
 	}
 
 	if uuid == "" {
 		return 0, errors.New("empty uuid provided")
 	}
 
-	url := fmt.Sprintf("http://%s.%s/accept/%s/%s", peer, GetNetwork(), uuid, value)
+	url := fmt.Sprintf("http://%s.%s/accept/%s", peer, GetNetwork(), uuid)
 
 	return SendRequest(url)
 }

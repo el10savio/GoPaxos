@@ -12,41 +12,45 @@ func PrepareReceiveHandler(w http.ResponseWriter, r *http.Request) {
 	// Obtain the id from URL params
 	id := mux.Vars(r)["id"]
 
-	PrepareReceive(id)
-
-	// err := PrepareReceive(id)
-	// if err != nil {
-	// 	log.WithFields(log.Fields{"error": err}).Error("failed to prepare")
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	return
-	// }
+	prepared, err := PrepareReceive(id)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Error("failed to prepare")
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
 	log.WithFields(log.Fields{
 		"id": id,
 	}).Debug("successfull prepare")
+
+	if !prepared {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
 	w.WriteHeader(http.StatusOK)
 }
 
 // AcceptReceiveHandler ...
 func AcceptReceiveHandler(w http.ResponseWriter, r *http.Request) {
-	// Obtain the id & value from URL params
+	// Obtain the id from URL params
 	id := mux.Vars(r)["id"]
-	value := mux.Vars(r)["value"]
 
-	AcceptReceive(id)
-
-	// err := AcceptReceive(id, value)
-	// if err != nil {
-	// 	log.WithFields(log.Fields{"error": err}).Error("failed to accept")
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	return
-	// }
+	accepted, err := AcceptReceive(id)
+	if err != nil {
+		log.WithFields(log.Fields{"error": err}).Error("failed to prepare")
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
 	log.WithFields(log.Fields{
-		"id":    id,
-		"value": value,
+		"id": id,
 	}).Debug("successfull accept")
+
+	if !accepted {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
 	w.WriteHeader(http.StatusOK)
 }

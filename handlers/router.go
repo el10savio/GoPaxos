@@ -39,7 +39,7 @@ var Routes = []Route{
 	Route{"/store/set/{key}/{value}", "GET", proposer.SetValue},
 
 	Route{"/prepare/{id}", "GET", acceptor.PrepareReceiveHandler},
-	Route{"/accept/{id}/{value}", "GET", acceptor.AcceptReceiveHandler},
+	Route{"/accept/{id}", "GET", acceptor.AcceptReceiveHandler},
 	// Route{"/learn/{value}", "GET", acceptor.LearnReceiveHandler},
 }
 
