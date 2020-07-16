@@ -9,7 +9,8 @@ import (
 	"../acceptor"
 )
 
-// PrepareReceiveHandler ...
+// PrepareReceiveHandler is the HTTP handler 
+// to process incoming Prepare Requests
 func PrepareReceiveHandler(w http.ResponseWriter, r *http.Request) {
 	// Obtain the id from URL params
 	id := mux.Vars(r)["id"]

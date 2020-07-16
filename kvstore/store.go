@@ -5,17 +5,19 @@ import "errors"
 // package kvstore is a simple in-memory key value
 // store used to store & retrieve string entries
 
-// Store ...
+// Store is the implementation 
+// of a simple Key Value store
 type Store struct {
 	Map map[string]string
 }
 
-// Initialize ...
+// Initialize returns an 
+// empty Key Value Store
 func Initialize() Store {
 	return Store{Map: make(map[string]string)}
 }
 
-// Set ...
+// Set sets a key value combination to the store
 func (store Store) Set(key, value string) error {
 	if key == "" {
 		return errors.New("empty key provided")
@@ -30,7 +32,7 @@ func (store Store) Set(key, value string) error {
 	return nil
 }
 
-// Get ...
+// Get obtains the value for a given key
 func (store Store) Get(key string) (string, error) {
 	if key == "" {
 		return "", errors.New("empty key provided")
@@ -43,7 +45,7 @@ func (store Store) Get(key string) (string, error) {
 	return store.Map[key], nil
 }
 
-// Delete ...
+// Delete deletes a key value entry
 func (store Store) Delete(key string) error {
 	if key == "" {
 		return errors.New("empty key provided")
@@ -58,7 +60,7 @@ func (store Store) Delete(key string) error {
 	return nil
 }
 
-// Clear ...
+// Clear deletes all the key value entries
 func (store Store) Clear() {
 	for key := range store.Map {
 		delete(store.Map, key)

@@ -5,10 +5,13 @@ import (
 	"strconv"
 )
 
-// HighestUUID ...
+// HighestUUID stores the current 
+// highest UUID in memory 
 var HighestUUID int64
 
-// PrepareReceive ...
+// PrepareReceive checks if the incoming UUID is greater 
+// than the one it has ever seen before and if so 
+// sets the new one as the highest UUID 
 func PrepareReceive(uuid string) (bool, error) {
 	if uuid == "" {
 		return false, errors.New("no uuid provided")
@@ -31,7 +34,8 @@ func PrepareReceive(uuid string) (bool, error) {
 	return true, nil
 }
 
-// AcceptReceive ...
+// AcceptReceive does the same as PrepareReceive 
+// to handle incoming Accept requests
 func AcceptReceive(uuid string) (bool, error) {
 	if uuid == "" {
 		return false, errors.New("no uuid provided")

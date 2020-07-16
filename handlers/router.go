@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	// Store ...
+	// Store is the shared KV Store
 	Store kvstore.Store
 )
 

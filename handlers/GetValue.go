@@ -8,7 +8,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// GetValue ...
+// GetValue  is the HTTP handler to process incoming KV Get requests
+// It gets the value from the in memory KV store 
 func GetValue(w http.ResponseWriter, r *http.Request) {
 	// Obtain the key from URL params
 	key := mux.Vars(r)["key"]

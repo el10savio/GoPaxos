@@ -7,18 +7,9 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// KVPair ...
-// type KVPair struct {
-// 	Key   string `json:"key"`
-// 	Value string `json:"value"`
-// }
-
-// Learn ...
+// Learn is the HTTP handler to process incoming Learn requests 
+// It persists the agreed upon value to its local KV Store
 func Learn(w http.ResponseWriter, r *http.Request) {
-	// json decode the KV pair
-	// var kv KVPair
-	// _ = json.NewDecoder(r.Body).Decode(&kv)
-
 	// Obtain the key & value from URL params
 	key := mux.Vars(r)["key"]
 	value := mux.Vars(r)["value"]

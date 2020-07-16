@@ -9,7 +9,7 @@ import (
 	"../acceptor"
 )
 
-// AcceptReceiveHandler ...
+// AcceptReceiveHandler is the HTTP handler to process incoming Accept requests 
 func AcceptReceiveHandler(w http.ResponseWriter, r *http.Request) {
 	// Obtain the id from URL params
 	id := mux.Vars(r)["id"]

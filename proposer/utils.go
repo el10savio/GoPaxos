@@ -9,8 +9,8 @@ import (
 	"time"
 )
 
-// GenerateUUID ...
-// Generate UUID out of UNIX nanosecond timestamp
+// GenerateUUID Generates a UUID out of 
+// UNIX nanosecond timestamp
 func GenerateUUID() string {
 	return strconv.FormatInt(time.Now().UnixNano(), 10)
 }
@@ -27,7 +27,7 @@ func GetNetwork() string {
 	return os.Getenv("NETWORK") + ":8080"
 }
 
-// SendRequest ...
+// SendRequest handles sending of an HTTP GET Request
 func SendRequest(url string) (int, error) {
 	if url == "" {
 		return 0, errors.New("empty url provided")

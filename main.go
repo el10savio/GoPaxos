@@ -1,5 +1,8 @@
 package main
 
+// The following implements the main Go 
+// package starting up the paxos server 
+
 import (
 	"net/http"
 	"os"

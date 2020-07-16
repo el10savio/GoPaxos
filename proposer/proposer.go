@@ -7,7 +7,9 @@ import (
 	"net/http"
 )
 
-// Prepare ...
+// Prepare starts a Paxos round sending 
+// a prepare request to all the Paxos 
+// peers including itself
 func Prepare(key string, value string) error {
 	if key == "" {
 		return errors.New("empty key provided")
@@ -53,7 +55,9 @@ func Prepare(key string, value string) error {
 	return nil
 }
 
-// Accept ...
+// Accept starts the accept phase sending 
+// an accept request to all the Paxos 
+// peers including itself
 func Accept(key string, value string, uuid string) error {
 	if key == "" {
 		return errors.New("empty key provided")
@@ -102,7 +106,9 @@ func Accept(key string, value string, uuid string) error {
 	return nil
 }
 
-// Learn ...
+// Learn in the final phase of the Paxos round 
+// telling all the nodes in the cluster to 
+// save the agreed upon data 
 func Learn(key string, value string) error {
 	if key == "" {
 		return errors.New("empty key provided")
@@ -128,7 +134,7 @@ func Learn(key string, value string) error {
 	return nil
 }
 
-// SendPrepareRequest ...
+// SendPrepareRequest sends the HTTP Prepare GET request to a given peer
 func SendPrepareRequest(peer string, uuid string) (int, error) {
 	if peer == "" {
 		return 0, errors.New("empty peer provided")
@@ -143,7 +149,7 @@ func SendPrepareRequest(peer string, uuid string) (int, error) {
 	return SendRequest(url)
 }
 
-// SendAcceptRequest ...
+// SendAcceptRequest sends the HTTP Accept GET request to a given peer
 func SendAcceptRequest(peer string, uuid string) (int, error) {
 	if peer == "" {
 		return 0, errors.New("empty peer provided")
@@ -158,7 +164,7 @@ func SendAcceptRequest(peer string, uuid string) (int, error) {
 	return SendRequest(url)
 }
 
-// SendLearnRequest ...
+// SendLearnRequest sends the HTTP Learn GET request to a given peer
 func SendLearnRequest(peer string, key string, value string) (int, error) {
 	if peer == "" {
 		return 0, errors.New("empty peer provided")
