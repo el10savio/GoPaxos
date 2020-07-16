@@ -16,7 +16,7 @@ func AcceptReceiveHandler(w http.ResponseWriter, r *http.Request) {
 
 	accepted, err := acceptor.AcceptReceive(id)
 	if err != nil {
-		log.WithFields(log.Fields{"error": err}).Error("failed to prepare")
+		log.WithFields(log.Fields{"error": err}).Error("failed to accept")
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}

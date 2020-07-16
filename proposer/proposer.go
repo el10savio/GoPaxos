@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-// Prepare starts a Paxos round sending 
-// a prepare request to all the Paxos 
+// Prepare starts a Paxos round sending
+// a prepare request to all the Paxos
 // peers including itself
 func Prepare(key string, value string) error {
 	if key == "" {
@@ -55,8 +55,8 @@ func Prepare(key string, value string) error {
 	return nil
 }
 
-// Accept starts the accept phase sending 
-// an accept request to all the Paxos 
+// Accept starts the accept phase sending
+// an accept request to all the Paxos
 // peers including itself
 func Accept(key string, value string, uuid string) error {
 	if key == "" {
@@ -106,9 +106,9 @@ func Accept(key string, value string, uuid string) error {
 	return nil
 }
 
-// Learn in the final phase of the Paxos round 
-// telling all the nodes in the cluster to 
-// save the agreed upon data 
+// Learn in the final phase of the Paxos round
+// telling all the nodes in the cluster to
+// save the agreed upon data
 func Learn(key string, value string) error {
 	if key == "" {
 		return errors.New("empty key provided")
