@@ -3,6 +3,10 @@ build:
 	@echo "Building Paxos Server"	
 	go build -o paxos/paxos main.go
 
+test:
+	@echo "Testing GoPaxos"	
+	go test -v --cover ./...
+
 provision:
 	@echo "Provisioning Paxos Cluster"	
 	bash scripts/provision.sh
