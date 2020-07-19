@@ -9,7 +9,7 @@ import (
 )
 
 // GetValue  is the HTTP handler to process incoming KV Get requests
-// It gets the value from the in memory KV store 
+// It gets the value from the in memory KV store
 func GetValue(w http.ResponseWriter, r *http.Request) {
 	// Obtain the key from URL params
 	key := mux.Vars(r)["key"]
@@ -24,7 +24,7 @@ func GetValue(w http.ResponseWriter, r *http.Request) {
 	log.WithFields(log.Fields{
 		"key":   key,
 		"value": value,
-	}).Debug("successfull getvalue")
+	}).Debug("successful getvalue")
 
 	// json encode response value
 	json.NewEncoder(w).Encode(value)

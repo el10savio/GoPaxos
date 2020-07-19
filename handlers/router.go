@@ -30,12 +30,12 @@ type Route struct {
 // Routes is a collection
 // of individual Routes
 var Routes = []Route{
-	Route{"/", "GET", Index},
-	Route{"/store/get/{key}", "GET", GetValue},
-	Route{"/store/set/{key}/{value}", "GET", PaxosSetValue},
-	Route{"/prepare/{id}", "GET", PrepareReceiveHandler},
-	Route{"/accept/{id}", "GET", AcceptReceiveHandler},
-	Route{"/learn/{key}/{value}", "GET", Learn},
+	{"/", "GET", Index},
+	{"/store/get/{key}", "GET", GetValue},
+	{"/store/set/{key}/{value}", "GET", PaxosSetValue},
+	{"/prepare/{id}", "GET", PrepareReceiveHandler},
+	{"/accept/{id}", "GET", AcceptReceiveHandler},
+	{"/learn/{key}/{value}", "GET", Learn},
 }
 
 // Index is the handler for the path "/"

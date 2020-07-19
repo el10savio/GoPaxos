@@ -9,7 +9,7 @@ import (
 	"../acceptor"
 )
 
-// AcceptReceiveHandler is the HTTP handler to process incoming Accept requests 
+// AcceptReceiveHandler is the HTTP handler to process incoming Accept requests
 func AcceptReceiveHandler(w http.ResponseWriter, r *http.Request) {
 	// Obtain the id from URL params
 	id := mux.Vars(r)["id"]
@@ -23,7 +23,7 @@ func AcceptReceiveHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.WithFields(log.Fields{
 		"id": id,
-	}).Debug("successfull accept")
+	}).Debug("successful accept")
 
 	if !accepted {
 		w.WriteHeader(http.StatusInternalServerError)

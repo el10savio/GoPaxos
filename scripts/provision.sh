@@ -70,7 +70,7 @@ if [[ provisioned_ports_count -ne peers_count ]]; then
 fi
 
 echo "Reserved ports:" ${peers[*]}
-comma_seperated_peers=$(
+comma_separated_peers=$(
     IFS=,
     echo "${peers[*]}"
 )
@@ -94,13 +94,13 @@ for ((id = 0; id < $peers_count; ++id)); do
     peer_id_list+=(peer-$id)
 done
 
-comma_seperated_peer_id_list=$(
+comma_separated_peer_id_list=$(
     IFS=,
     echo "${peer_id_list[*]}"
 )
 
 for peer_index in "${!peers[@]}"; do
-    docker run -p "${peers[$peer_index]}":8080 --net $network -e "PEERS="$comma_seperated_peer_id_list"" -e "NETWORK="$network"" --name="peer-$peer_index" -d paxos
+    docker run -p "${peers[$peer_index]}":8080 --net $network -e "PEERS="$comma_separated_peer_id_list"" -e "NETWORK="$network"" --name="peer-$peer_index" -d paxos
 done
 
 # Docker list peers on success

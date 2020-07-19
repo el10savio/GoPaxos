@@ -5,13 +5,13 @@ import "errors"
 // package kvstore is a simple in-memory key value
 // store used to store & retrieve string entries
 
-// Store is the implementation 
+// Store is the implementation
 // of a simple Key Value store
 type Store struct {
 	Map map[string]string
 }
 
-// Initialize returns an 
+// Initialize returns an
 // empty Key Value Store
 func Initialize() Store {
 	return Store{Map: make(map[string]string)}

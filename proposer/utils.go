@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// GenerateUUID Generates a UUID out of 
+// GenerateUUID Generates a UUID out of
 // UNIX nanosecond timestamp
 func GenerateUUID() string {
 	return strconv.FormatInt(time.Now().UnixNano(), 10)

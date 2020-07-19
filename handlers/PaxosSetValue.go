@@ -9,7 +9,7 @@ import (
 	"../proposer"
 )
 
-// PaxosSetValue is the HTTP handler to process the incoming write message 
+// PaxosSetValue is the HTTP handler to process the incoming write message
 // It starts the paxos round in the cluster and makes the incoming node as the leader
 func PaxosSetValue(w http.ResponseWriter, r *http.Request) {
 	// Obtain the key & value from URL params
@@ -26,7 +26,7 @@ func PaxosSetValue(w http.ResponseWriter, r *http.Request) {
 	log.WithFields(log.Fields{
 		"key":   key,
 		"value": value,
-	}).Debug("successfull set value")
+	}).Debug("successful set value")
 
 	w.WriteHeader(http.StatusOK)
 }

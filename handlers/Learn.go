@@ -7,7 +7,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// Learn is the HTTP handler to process incoming Learn requests 
+// Learn is the HTTP handler to process incoming Learn requests
 // It persists the agreed upon value to its local KV Store
 func Learn(w http.ResponseWriter, r *http.Request) {
 	// Obtain the key & value from URL params
@@ -24,7 +24,7 @@ func Learn(w http.ResponseWriter, r *http.Request) {
 	log.WithFields(log.Fields{
 		"key":   key,
 		"value": value,
-	}).Debug("successfull learn")
+	}).Debug("successful learn")
 
 	w.WriteHeader(http.StatusOK)
 }

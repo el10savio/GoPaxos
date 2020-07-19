@@ -9,7 +9,7 @@ import (
 	"../acceptor"
 )
 
-// PrepareReceiveHandler is the HTTP handler 
+// PrepareReceiveHandler is the HTTP handler
 // to process incoming Prepare Requests
 func PrepareReceiveHandler(w http.ResponseWriter, r *http.Request) {
 	// Obtain the id from URL params
@@ -24,7 +24,7 @@ func PrepareReceiveHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.WithFields(log.Fields{
 		"id": id,
-	}).Debug("successfull prepare")
+	}).Debug("successful prepare")
 
 	if !prepared {
 		w.WriteHeader(http.StatusInternalServerError)
